@@ -22,6 +22,10 @@ class UserSeeder extends Seeder
             ['email' => 'student@example.com'],
             ['name' => 'Student 1', 'password' => Hash::make('password'), 'role' => User::ROLE_STUDENT]
         );
+        $student = User::firstOrCreate(
+            ['email' => 'student2@example.com'],
+            ['name' => 'Student 2', 'password' => Hash::make('password'), 'role' => User::ROLE_STUDENT]
+        );
         if (!$student->isStudent()) {
             $student->update(['role' => User::ROLE_STUDENT]);
         }
