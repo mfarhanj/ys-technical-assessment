@@ -9,7 +9,15 @@
             </div>
             <div class="mb-3">
                 <label class="form-label">Description (optional)</label>
-                <textarea class="form-control" wire:model="description" rows="2"></textarea>
+                {{-- <textarea class="form-control" wire:model="description" rows="2"></textarea> --}}
+
+                <textarea
+                    class="form-control"
+                    wire:model="description"
+                    rows="2"
+                    data-autosize="true"
+                    style="overflow:hidden; resize:none;"
+                ></textarea>
             </div>
             <div class="row">
                 <div class="col-md-6 mb-3">
@@ -50,11 +58,18 @@
                         <button type="button" class="btn btn-sm btn-outline-danger" wire:click="removeQuestion({{ $index }})">Remove</button>
                     </div>
                     <div class="mb-2">
-                        <textarea class="form-control" wire:model="questions.{{ $index }}.question_text" rows="2" placeholder="Question text"></textarea>
+                        <textarea
+                            class="form-control"
+                            wire:model="questions.{{ $index }}.question_text"
+                            rows="2"
+                            placeholder="Question text"
+                            data-autosize="true"
+                            style="overflow:hidden; resize:none;"
+                        ></textarea>
                     </div>
                     <div class="row mb-2">
                         <div class="col-md-4">
-                            <select class="form-select form-select-sm" wire:model="questions.{{ $index }}.type">
+                            <select class="form-select form-select-sm" wire:model.live="questions.{{ $index }}.type">
                                 <option value="multiple_choice">Multiple choice</option>
                                 <option value="open_text">Open text</option>
                             </select>
@@ -64,7 +79,7 @@
                             <input type="number" class="form-control form-control-sm" wire:model="questions.{{ $index }}.marks" min="1" placeholder="Marks">
                         </div>
                     </div>
-                    @if(($questions[$index]['type'] ?? '') === 'multiple_choice')
+                    @if(($q['type'] ?? '') === 'multiple_choice')
                         <div class="small">
                             @foreach(['A','B','C','D'] as $opt)
                                 <div class="input-group input-group-sm mb-1">
@@ -97,4 +112,23 @@
         <button type="button" class="btn btn-primary" wire:click="save">Save Exam</button>
         <a href="{{ route('lecturer.exams') }}" class="btn btn-secondary">Cancel</a>
     </div>
+
+    <script>
+        (function () {
+            function autoResize(el) {
+                el.style.height = 'auto';
+                el.style.height = el.scrollHeight + 'px';
+            }
+
+            window.addEventListener('load', function () {
+                document.querySelectorAll('textarea[data-autosize]').forEach(autoResize);
+            });
+
+            document.addEventListener('input', function (e) {
+                if (e.target.matches('textarea[data-autosize]')) {
+                    autoResize(e.target);
+                }
+            });
+        })();
+    </script>
 </div>
