@@ -89,5 +89,39 @@
         </main>
     </div>
     @livewireScripts
+
+    {{-- SweetAlert2 for success messages --}}
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            @if(session('success') || session('status') || session('message'))
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Success',
+                    text: @json(session('success') ?? session('status') ?? session('message')),
+                    timer: 3000,
+                    showConfirmButton: false
+                });
+            @endif
+        });
+
+        document.addEventListener('livewire:init', () => {
+            if (window.Livewire) {
+                Livewire.on('notify', (event) => {
+                    const type = event.type || 'success';
+                    const message = event.message || '';
+                    if (!message) return;
+
+                    Swal.fire({
+                        icon: type,
+                        title: type.charAt(0).toUpperCase() + type.slice(1),
+                        text: message,
+                        timer: 3000,
+                        showConfirmButton: false
+                    });
+                });
+            }
+        });
+    </script>
 </body>
 </html>
