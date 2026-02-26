@@ -10,8 +10,8 @@ class TakeExamController extends Controller
     public function show(Exam $exam)
     {
         $user = auth()->user();
-        $classIds = $user->classes()->pluck('id');
-        $assigned = $exam->classes()->whereIn('id', $classIds)->exists();
+        $classIds = $user->classes()->pluck('classes.id');
+        $assigned = $exam->classes()->whereIn('classes.id', $classIds)->exists();
         if (!$assigned) {
             abort(403, 'This exam is not assigned to your class.');
         }
