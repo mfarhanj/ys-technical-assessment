@@ -59,7 +59,8 @@
                                 <option value="open_text">Open text</option>
                             </select>
                         </div>
-                        <div class="col-md-2">
+                        <div class="col-md-2 d-flex align-items-center">
+                            <label class="form-label mb-0 me-2">Marks:</label>
                             <input type="number" class="form-control form-control-sm" wire:model="questions.{{ $index }}.marks" min="1" placeholder="Marks">
                         </div>
                     </div>
