@@ -1,9 +1,4 @@
 <div class="container">
-    @if(session('message'))
-        <div class="alert alert-success alert-dismissible fade show">{{ session('message') }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-        </div>
-    @endif
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h4 class="mb-0">Exams</h4>
         <a href="{{ route('lecturer.exams.create') }}" class="btn btn-primary">Create Exam</a>

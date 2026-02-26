@@ -21,7 +21,9 @@ class SubjectList extends Component
         ]);
         Subject::create(['name' => $this->name, 'code' => $this->code ?: null]);
         $this->reset(['name', 'code']);
-        session()->flash('message', 'Subject created.');
+        $message = 'Subject created.';
+        session()->flash('message', $message);
+        $this->dispatch('notify', type: 'success', message: $message);
     }
 
     public function edit($id)
@@ -40,7 +42,9 @@ class SubjectList extends Component
         ]);
         Subject::findOrFail($this->editingId)->update(['name' => $this->editName, 'code' => $this->editCode ?: null]);
         $this->cancelEdit();
-        session()->flash('message', 'Subject updated.');
+        $message = 'Subject updated.';
+        session()->flash('message', $message);
+        $this->dispatch('notify', type: 'success', message: $message);
     }
 
     public function cancelEdit()
@@ -52,7 +56,9 @@ class SubjectList extends Component
     {
         Subject::findOrFail($id)->delete();
         $this->cancelEdit();
-        session()->flash('message', 'Subject deleted.');
+        $message = 'Subject deleted.';
+        session()->flash('message', $message);
+        $this->dispatch('notify', type: 'success', message: $message);
     }
 
     public function render()

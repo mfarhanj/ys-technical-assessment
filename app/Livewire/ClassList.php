@@ -23,7 +23,9 @@ class ClassList extends Component
         $this->validate();
         ClassModel::create(['name' => $this->name, 'code' => $this->code ?: null]);
         $this->reset(['name', 'code']);
-        session()->flash('message', 'Class created.');
+        $message = 'Class created.';
+        session()->flash('message', $message);
+        $this->dispatch('notify', type: 'success', message: $message);
     }
 
     public function edit($id)
@@ -43,7 +45,9 @@ class ClassList extends Component
         $c = ClassModel::findOrFail($this->editingId);
         $c->update(['name' => $this->editName, 'code' => $this->editCode ?: null]);
         $this->cancelEdit();
-        session()->flash('message', 'Class updated.');
+        $message = 'Class updated.';
+        session()->flash('message', $message);
+        $this->dispatch('notify', type: 'success', message: $message);
     }
 
     public function cancelEdit()
@@ -55,7 +59,9 @@ class ClassList extends Component
     {
         ClassModel::findOrFail($id)->delete();
         $this->cancelEdit();
-        session()->flash('message', 'Class deleted.');
+        $message = 'Class deleted.';
+        session()->flash('message', $message);
+        $this->dispatch('notify', type: 'success', message: $message);
     }
 
     public function render()

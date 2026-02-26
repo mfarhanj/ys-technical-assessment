@@ -69,7 +69,10 @@ class TakeExam extends Component
         $this->submitted = true;
         $this->score = $score;
         $this->totalMarks = $this->exam->total_marks;
-        session()->flash('message', 'Exam submitted. Score: ' . $score . '/' . $this->exam->total_marks);
+        $message = 'Exam submitted. Score: ' . $score . '/' . $this->exam->total_marks;
+
+        session()->flash('message', $message);
+        $this->dispatch('notify', type: 'success', message: $message);
     }
 
     public function render()

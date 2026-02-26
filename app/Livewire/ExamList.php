@@ -11,14 +11,18 @@ class ExamList extends Component
     {
         $exam = Exam::where('created_by', auth()->id())->findOrFail($id);
         $exam->update(['is_published' => !$exam->is_published]);
-        session()->flash('message', $exam->is_published ? 'Exam published.' : 'Exam unpublished.');
+        $message = $exam->is_published ? 'Exam published.' : 'Exam unpublished.';
+        session()->flash('message', $message);
+        $this->dispatch('notify', type: 'success', message: $message);
     }
 
     public function delete($id)
     {
         $exam = Exam::where('created_by', auth()->id())->findOrFail($id);
         $exam->delete();
-        session()->flash('message', 'Exam deleted.');
+        $message = 'Exam deleted.';
+        session()->flash('message', $message);
+        $this->dispatch('notify', type: 'success', message: $message);
     }
 
     public function render()

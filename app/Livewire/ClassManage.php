@@ -16,28 +16,36 @@ class ClassManage extends Component
         $user = User::where('role', User::ROLE_STUDENT)->findOrFail($userId);
         if (!$this->class->students()->where('user_id', $userId)->exists()) {
             $this->class->students()->attach($userId);
-            session()->flash('message', 'Student added.');
+            $message = 'Student added.';
+            session()->flash('message', $message);
+            $this->dispatch('notify', type: 'success', message: $message);
         }
     }
 
     public function removeStudent($userId)
     {
         $this->class->students()->detach($userId);
-        session()->flash('message', 'Student removed.');
+        $message = 'Student removed.';
+        session()->flash('message', $message);
+        $this->dispatch('notify', type: 'success', message: $message);
     }
 
     public function addSubject($subjectId)
     {
         if (!$this->class->subjects()->where('subject_id', $subjectId)->exists()) {
             $this->class->subjects()->attach($subjectId);
-            session()->flash('message', 'Subject added.');
+            $message = 'Subject added.';
+            session()->flash('message', $message);
+            $this->dispatch('notify', type: 'success', message: $message);
         }
     }
 
     public function removeSubject($subjectId)
     {
         $this->class->subjects()->detach($subjectId);
-        session()->flash('message', 'Subject removed.');
+        $message = 'Subject removed.';
+        session()->flash('message', $message);
+        $this->dispatch('notify', type: 'success', message: $message);
     }
 
     public function render()

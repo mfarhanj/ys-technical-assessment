@@ -21,10 +21,6 @@
     get minutes() { return Math.floor(this.timeLeft / 60); },
     get seconds() { return this.timeLeft % 60; }
 }">
-    @if(session('message'))
-        <div class="alert alert-success">{{ session('message') }}</div>
-    @endif
-
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h4>{{ $exam->title }}</h4>
         @if(!$submitted)

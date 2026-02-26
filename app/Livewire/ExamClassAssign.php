@@ -19,7 +19,9 @@ class ExamClassAssign extends Component
     public function updatedSelectedClasses()
     {
         $this->exam->classes()->sync($this->selectedClasses);
-        session()->flash('message', 'Class assignment updated.');
+        $message = 'Class assignment updated.';
+        session()->flash('message', $message);
+        $this->dispatch('notify', type: 'success', message: $message);
     }
 
     public function render()

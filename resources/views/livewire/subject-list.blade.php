@@ -1,9 +1,4 @@
 <div class="container">
-    @if(session('message'))
-        <div class="alert alert-success alert-dismissible fade show">{{ session('message') }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-        </div>
-    @endif
     <div class="card mb-4">
         <div class="card-header">Add Subject</div>
         <div class="card-body">
