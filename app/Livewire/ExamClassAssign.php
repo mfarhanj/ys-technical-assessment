@@ -13,7 +13,7 @@ class ExamClassAssign extends Component
     public function mount(Exam $exam)
     {
         $this->exam = $exam;
-        $this->selectedClasses = $exam->classes()->pluck('id')->map(fn ($id) => (string) $id)->all();
+        $this->selectedClasses = $exam->classes()->pluck('classes.id')->map(fn ($id) => (string) $id)->all();
     }
 
     public function updatedSelectedClasses()
