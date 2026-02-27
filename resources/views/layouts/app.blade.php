@@ -37,6 +37,7 @@
                                 <li class="nav-item"><a class="nav-link" href="{{ route('lecturer.classes') }}">Classes</a></li>
                                 <li class="nav-item"><a class="nav-link" href="{{ route('lecturer.subjects') }}">Subjects</a></li>
                                 <li class="nav-item"><a class="nav-link" href="{{ route('lecturer.exams') }}">Exams</a></li>
+                                <li class="nav-item"><a class="nav-link" href="{{ route('lecturer.results') }}">Results</a></li>
                             @else
                                 <li class="nav-item"><a class="nav-link" href="{{ route('student.dashboard') }}">Dashboard</a></li>
                                 <li class="nav-item"><a class="nav-link" href="{{ route('student.exams') }}">My Exams</a></li>
