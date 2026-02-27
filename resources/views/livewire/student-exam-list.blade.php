@@ -15,7 +15,12 @@
                         <td>
                             @php $attempt = auth()->user()->examAttempts()->where('exam_id', $exam->id)->latest()->first(); @endphp
                             @if($attempt && $attempt->submitted_at)
-                                <a href="{{ route('student.results') }}" class="btn btn-sm btn-outline-secondary">View result</a>
+                                @php $status = $attempt->status ?: 'graded'; @endphp
+                                @if($status === 'graded')
+                                    <a href="{{ route('student.results') }}" class="btn btn-sm btn-outline-secondary">View result</a>
+                                @else
+                                    <button class="btn btn-sm btn-outline-secondary" disabled>Pending review</button>
+                                @endif
                             @else
                                 <a href="{{ route('student.exams.take', $exam) }}" class="btn btn-sm btn-primary">Take exam</a>
                             @endif
