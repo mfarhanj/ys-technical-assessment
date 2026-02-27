@@ -28,6 +28,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/exams', fn () => view('lecturer.exams'))->name('exams');
         Route::get('/exams/create', fn () => view('lecturer.exam-form', ['exam' => null]))->name('exams.create');
         Route::get('/exams/{exam}/edit', [App\Http\Controllers\Lecturer\ExamViewController::class, 'edit'])->name('exams.edit');
+        Route::get('/results', fn () => view('lecturer.results'))->name('results');
     });
 
     // Student-only routes
