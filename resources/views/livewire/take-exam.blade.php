@@ -34,7 +34,11 @@
         <div class="card mb-4">
             <div class="card-body text-center">
                 <h5>Exam submitted</h5>
-                <p class="display-6 mb-0">Score: {{ $score }}/{{ $totalMarks }}</p>
+                @if(($attemptStatus ?? null) === 'pending_review')
+                    <p class="mb-0 text-muted">Awaiting lecturer review before results are released.</p>
+                @else
+                    <p class="display-6 mb-0">Score: {{ $score }}/{{ $totalMarks }}</p>
+                @endif
                 <a href="{{ route('student.exams') }}" class="btn btn-primary mt-3">Back to exams</a>
             </div>
         </div>
