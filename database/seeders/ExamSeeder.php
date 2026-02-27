@@ -15,7 +15,7 @@ class ExamSeeder extends Seeder
     {
         $lecturer = User::where('email', 'lecturer@example.com')->first();
         $subject = Subject::where('code', 'MATH')->first();
-        $class = ClassModel::where('code', 'Y1C')->first();
+        $class = ClassModel::where('code', 'K1')->first();
 
         if (!$lecturer || !$subject) {
             return;
@@ -24,7 +24,7 @@ class ExamSeeder extends Seeder
         $exam = Exam::firstOrCreate(
             ['title' => 'Math Quiz 1', 'created_by' => $lecturer->id],
             [
-                'description' => 'Basic arithmetic',
+                'description' => 'Basic',
                 'subject_id' => $subject->id,
                 'time_limit_minutes' => 15,
                 'total_marks' => 3,
@@ -58,7 +58,7 @@ class ExamSeeder extends Seeder
                 'correct_answer' => 'B',
             ]);
             $exam->questions()->create([
-                'question_text' => 'Explain what addition is in one sentence.',
+                'question_text' => 'What formula to calculate circle?',
                 'type' => Question::TYPE_OPEN_TEXT,
                 'order' => 2,
                 'marks' => 1,

@@ -12,8 +12,8 @@ class ClassSeeder extends Seeder
     public function run(): void
     {
         $classes = [
-            ['code' => 'Y1C', 'name' => 'Year 1 Computing'],
-            ['code' => 'Y2C', 'name' => 'Year 2 Computing'],
+            ['code' => 'K1', 'name' => 'Kelas 1'],
+            ['code' => 'K2', 'name' => 'Kelas 2'],
         ];
 
         foreach ($classes as $data) {
@@ -23,7 +23,7 @@ class ClassSeeder extends Seeder
             );
         }
 
-        $class = ClassModel::where('code', 'Y1C')->first();
+        $class = ClassModel::where('code', 'K1')->first();
         $subject = Subject::where('code', 'MATH')->first();
         $students = User::where('role', User::ROLE_STUDENT)->pluck('id');
 
