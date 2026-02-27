@@ -10,7 +10,14 @@
                     <tr>
                         <td>{{ $a->exam->title }}</td>
                         <td>{{ $a->exam->subject->name }}</td>
-                        <td>{{ $a->score }}/{{ $a->total_marks }}</td>
+                        <td>
+                            @php $status = $a->status ?: 'graded'; @endphp
+                            @if($status === 'graded')
+                                {{ $a->score }}/{{ $a->total_marks }}
+                            @else
+                                <span class="text-muted">Pending review</span>
+                            @endif
+                        </td>
                         <td>{{ $a->submitted_at?->format('d M Y H:i') }}</td>
                     </tr>
                 @empty
