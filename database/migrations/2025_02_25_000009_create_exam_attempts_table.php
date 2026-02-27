@@ -16,7 +16,7 @@ return new class extends Migration
             $table->timestamp('submitted_at')->nullable();
             $table->unsignedInteger('score')->nullable();
             $table->unsignedInteger('total_marks')->nullable();
-            $table->json('answers')->nullable(); // { question_id => answer }
+            $table->json('answers')->nullable();
             $table->timestamps();
 
             $table->foreign('exam_id')->references('id')->on('exams')->onDelete('cascade');

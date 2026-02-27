@@ -1,4 +1,11 @@
 # ys-technical-assessment
+
+Credential: 
+
+Lecturer 1 : lecturer@example.com / password
+Student 1 : student@example.com / password
+Student 2 : student2@example.com / password
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">

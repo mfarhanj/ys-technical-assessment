@@ -14,7 +14,7 @@ class LecturerResults extends Component
     public ?int $examId = null;
     public string $studentSearch = '';
     public ?int $selectedAttemptId = null;
-    public array $openTextMarks = []; // [question_id => marks_awarded]
+    public array $openTextMarks = [];
 
     public function selectAttempt(int $attemptId): void
     {
@@ -84,7 +84,6 @@ class LecturerResults extends Component
         $answers = $attempt->answers ?? [];
         $awarded = $attempt->awarded_marks ?? [];
 
-        // Always recompute MCQ marks from stored answers.
         foreach ($attempt->exam->questions as $q) {
             if ($q->type !== Question::TYPE_MULTIPLE_CHOICE) {
                 continue;
@@ -94,7 +93,6 @@ class LecturerResults extends Component
             $awarded[$q->id] = $isCorrect ? (int) $q->marks : 0;
         }
 
-        // Validate and set open-text marks.
         foreach ($attempt->exam->questions as $q) {
             if ($q->type !== Question::TYPE_OPEN_TEXT) {
                 continue;

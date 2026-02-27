@@ -11,7 +11,7 @@ return new class extends Migration
     {
         Schema::table('exam_attempts', function (Blueprint $table) {
             $table->string('status')->default('in_progress')->after('submitted_at');
-            $table->json('awarded_marks')->nullable()->after('answers'); // { question_id => int|null }
+            $table->json('awarded_marks')->nullable()->after('answers');
             $table->timestamp('graded_at')->nullable()->after('awarded_marks');
             $table->unsignedBigInteger('graded_by')->nullable()->after('graded_at');
 
